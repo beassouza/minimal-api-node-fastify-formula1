@@ -1,81 +1,96 @@
-<div align="center">
+# 🏎️ Formula 1 API
 
-  <img src="./.github/assets/blue-saiyan-bg.png" alt="Logo" height="200">
-  <h1 align="center"><strong>NODE BOILERPLATE - BLUE EDITION</strong></h1>
-  <p align="center">
-	  Don't start a new Node project from zero!<br> Use this simple <b>Nodejs</b> boilerplate with pre-configured <b>Typescript</b> in a modern way.
-  </p>
+Uma API REST leve, rápida e tipada desenvolvida com **Fastify** e **TypeScript**, fornecendo dados sobre as equipes e pilotos da temporada de Fórmula 1.
 
-</div>
+---
 
-<br />
+## 🚀 Tecnologias Utilizadas
 
-  <!-- Badges -->
-<div align="center">
-  
-  [![TypeScript version][ts-badge]][typescript-5-4]
-  [![Node.js version][nodejs-badge]][nodejs]
+- [Node.js](https://nodejs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Fastify](https://fastify.dev/) - Framework web de alta performance
+- [@fastify/cors](https://github.com/fastify/fastify-cors) - Habilitação de CORS (Cross-Origin Resource Sharing)
+- [tsx](https://github.com/privatenumber/tsx) / [ts-node-dev](https://github.com/wclr/ts-node-dev)
 
-</div>
+---
 
-# 🚀 Technologies
+## 📦 Instalação e Configuração
 
-This code source was developed with the following items:
+1. **Clone o repositório:**
+   ```bash
+   git clone [https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git](https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git)
+   cd NOME_DO_REPOSITORIO
+   ```
 
-### 📦 Dependencies
-
-- [typescript][typescript-npm] - Superset for application scale JavaScript development
-- [tsx][tsx-npm] - TypeScript Execute (tsx): Enable Node.js to run TypeScript
-- [tsup][tsup-npm] - Bundle your TypeScript library with no config, powered by esbuild
-- [@types/node][@types/node-npm] - type definitions for node
-
-### 📄 Files
-
-- `.gitignore` - Ignore folders like node_modules
-- `.env` - Enviroment variables
-- `tsconfig.json` - Typescript configure Options
-
-### ⚡ Scripts
-
-- `npm run dist`: Compiles TypeScript files to JavaScript in the dist directory.
-- `npm run start:dev`: Runs the server in development mode with environment variables loaded from the .env file.
-- `npm run start:watch`: Runs the server in development mode with support for automatic reload on file changes.
-- `npm run start:dist`: Compiles the project and runs the compiled version from the dist directory.
-
-# 👨‍💻 How To Use
-
-click in **[Use this template]** OR
-
-To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js v20+](https://nodejs.org/en/) + [NPM v10+](https://nodejs.org/en/) installed on your computer. From your command line:
-
+2. **Instale as dependências:**
 ```bash
-# Clone this repository
-$ git clone https://github.com/felipeAguiarCode/node-blue-boilerplate
+npm install
 
-# Go into the repository
-$ cd node-blue-boilerplate
-
-# Install dependencies
-$ npm install
 ```
 
-## Author
 
-| [<img src="https://avatars3.githubusercontent.com/u/37452836?s=96&v=4"><br><sub>Felipe Aguiar</sub>](https://github.com/felipeAguiarCode) |
-| :---------------------------------------------------------------------------------------------------------------------------------------: |
-|                                            [Linkedin](www.linkedin.com/in/felipe-aguiar-exe/)                                             |
+*Dependências principais:*
+```bash
+npm install fastify @fastify/cors
+npm install -D typescript @types/node tsx
 
-# Credits
+```
 
-icons by [Pino Lamanna][dribble-icon]
 
-[typescript]: https://www.typescriptlang.org/
-[typescript-5-4]: https://www.typescriptlang.org/
-[ts-badge]: https://img.shields.io/badge/TypeScript-5.4-blue.svg
-[nodejs-badge]: https://img.shields.io/badge/Node.js->=%2020.00-blue.svg
-[nodejs]: https://nodejs.org/
-[dribble-icon]: https://dribbble.com/Schakalwal
-[typescript-npm]: https://www.npmjs.com/package/typescript
-[tsx-npm]: https://www.npmjs.com/package/tsx
-[tsup-npm]: https://www.npmjs.com/package/tsup
-[@types/node-npm]: https://www.npmjs.com/package/@types/node
+3. **Inicie o servidor de desenvolvimento:**
+```bash
+npm run dev
+# ou diretamente com tsx:
+npx tsx watch src/server.ts
+
+```
+
+
+O servidor iniciará por padrão na porta **3636**: `http://localhost:3636`
+
+---
+
+## 🛣️ Rotas da API (Endpoints)
+
+A API possui suporte nativo a CORS (`origin: "*"`) e retorna respostas em formato JSON.
+
+### 🏁 Equipes (`/teams`)
+
+| Método | Endpoint | Descrição |
+| --- | --- | --- |
+| `GET` | `/teams` | Retorna a lista com todas as equipes |
+| `GET` | `/teams/:name` | Retorna os detalhes de uma equipe pelo nome |
+
+#### Exemplos de requisição:
+
+* `GET http://localhost:3636/teams`
+* `GET http://localhost:3636/teams/Ferrari`
+* `GET http://localhost:3636/teams/Red%20Bull%20Racing`
+
+---
+
+### 🏎️ Pilotos (`/drivers`)
+
+| Método | Endpoint | Descrição |
+| --- | --- | --- |
+| `GET` | `/drivers` | Retorna a lista completa com todos os pilotos |
+| `GET` | `/drivers/:id` | Retorna os detalhes de um piloto pelo seu ID numérico |
+
+#### Exemplos de requisição:
+
+* `GET http://localhost:3636/drivers`
+* `GET http://localhost:3636/drivers/18`
+
+---
+
+## ⚠️ Códigos de Status HTTP
+
+* `200 OK`: Requisição realizada com sucesso.
+* `404 Not Found`: Equipe ou piloto não encontrado (`{ "message": "Team Not Found" }` ou `{ "message": "Driver Not Found" }`).
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença [MIT](https://www.google.com/search?q=LICENSE).
+
