@@ -39,10 +39,9 @@ npm install -D typescript @types/node tsx
 
 3. **Inicie o servidor de desenvolvimento:**
 ```bash
-npm run dev
+npm run start:dev
 # ou diretamente com tsx:
-npx tsx watch src/server.ts
-
+tsx --env-file=.env src/server.ts
 ```
 
 
